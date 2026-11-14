@@ -22,3 +22,16 @@
 - 인계 초안 판정: W1 유지(대금 조건 추가), W2(자금계획)→W3, 유동성 위기 W4 신설, W3(여신)→K1, R1·R2 유지, R3(외환)→F1·F2, 스왑·원자재 R3·헤지 실패 R4 신설. 선수는 이 리포 안으로 닫았다.
 - G2 선측정(2026-11-14 WebFetch): 외국환거래규정 `admRulInfoR.do`가 offset 0(제4장)·100000(제7장)으로 읽히고, 한국은행 ECOS Open API 시험 키로 원/달러 일별 값이 읽힌다.
 - go-finance G3 교훈 선반영: 튜터가 Bash 스크립트로 파일을 고치다 권한 거부 → 「파일은 Edit·Write로만」. 변동 항목 질문을 미루는 문제 → 「다음 차례에 출처로 판정」.
+
+## G2 하네스
+
+| 회차 | 점수 | 주요 지적 → 수정 |
+|---|---|---|
+| 1 | 8 | 통과. `check.mjs`를 일부러 깬 사본 12가지에서 모두 FAIL 확인(리뷰어). 잔여 반영: 행정규칙 현행 확인을 `admRulSeq` 비교가 아니라 `/행정규칙/<규칙명>` 머리의 고시 번호·시행일 대조로(WebFetch로는 admRulSeq가 안 보임). 입구 진단 「설명 미룸」과 변동 항목 「미루지 않음」의 충돌 → 진단 규칙에 예외 한 줄. go-finance 잔재(CFA·YC SAFE, 세율 예시) → ISDA·LMA·ICC, 가산금리 예시 |
+
+- 실측(2026-11-14, `claude -p --setting-sources project --permission-mode dontAsk`): 신뢰 수락 폴더에서 튜터가 외국환거래규정을 offset 0 → 100000으로 이어 읽어 제7-16조① 원문을 인용하고 출처 한 줄을 붙였다. 권한 거부 0. 신뢰를 수락하지 않은 폴더에서는 WebFetch가 거부됐다(프로젝트 권한 미적용 — README 신뢰 안내가 필수인 이유).
+
+### 하네스 한계
+
+- 튜터 `claude -p`는 `--setting-sources project`로 돌지만 실행자의 전역 규칙(`~/.claude/rules`)은 읽힌다(go-finance 실측). 판정에 감안한다.
+- G3 러너는 클론 경로마다 신뢰를 기록하고 끝나면 지운다(`~/tmp/go-treasury/g3/trust-cleanup.mjs`).
