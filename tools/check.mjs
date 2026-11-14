@@ -30,7 +30,7 @@ function parseCurriculum(text) {
   const blocks = text.split(/^### /m).slice(1);
   for (const block of blocks) {
     const head = block.split("\n")[0];
-    const m = head.match(/^([BIKGX]\d+) · (.+)$/);
+    const m = head.match(/^([BWKRFX]\d+) · (.+)$/);
     if (!m) { problems.push(`모듈 제목 형식 오류: ${head}`); continue; }
     const id = m[1];
     if (modules.has(id)) problems.push(`${id}: 중복 id`);
