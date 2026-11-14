@@ -13,13 +13,14 @@ const read = (p) => readFileSync(join(root, p), "utf8").replace(/\r\n/g, "\n");
 const LEVELS = ["Explain", "Apply", "Evaluate", "Develop"];
 const FIELDS = ["선수", "핵심 질문", "목표", "만들어 볼 것", "국내 근거", "글로벌 비교"];
 // 공식 출처 도메인 허용 목록(정본, sources.md 머리에도 같은 목록). 하위 도메인 포함.
-// 국내: 법령·감독·발행 기관. 글로벌: 입법·감독기관, 국제기구, 그 기준을 만든 기준 제정 기관(IFRS·COSO·ISO·CFA·ACT·SAFE를 만든 YC).
+// 국내: 법령·감독·공공 기관, 지급결제 기관, 은행연합회(공시에만). 글로벌: 입법·감독기관, 국제기구, 그 기준을 만든 기준 제정 단체.
 const DOMAINS = [
-  "law.go.kr", "fsc.go.kr", "fss.or.kr", "nts.go.kr", "bok.or.kr", "moef.go.kr", "krx.co.kr", "ftc.go.kr", "kdi.re.kr",
-  "sec.gov", "ecfr.gov", "uscode.house.gov", "govinfo.gov", "irs.gov", "federalreserve.gov", "treasury.gov", "delaware.gov",
-  "europa.eu", "legislation.gov.uk", "gov.uk", "e-gov.go.jp",
+  "law.go.kr", "scourt.go.kr", "fsc.go.kr", "fss.or.kr", "bok.or.kr", "moef.go.kr", "ftc.go.kr", "nts.go.kr", "kdic.or.kr", "ksure.or.kr", "kodit.or.kr", "kibo.or.kr", "kasb.or.kr",
+  "kftc.or.kr", "unote.kr", "cmsedi.or.kr", "kfb.or.kr",
+  "federalreserve.gov", "newyorkfed.org", "ecfr.gov", "uscode.house.gov", "govinfo.gov", "treasury.gov", "cftc.gov", "sec.gov", "fdic.gov",
+  "europa.eu", "legislation.gov.uk", "gov.uk", "fca.org.uk", "e-gov.go.jp",
   "bis.org", "oecd.org",
-  "ifrs.org", "coso.org", "iso.org", "cfainstitute.org", "treasurers.org", "ycombinator.com",
+  "ifrs.org", "coso.org", "iso.org", "treasurers.org", "isda.org", "lma.eu.com", "iccwbo.org",
 ];
 
 function parseCurriculum(text) {
