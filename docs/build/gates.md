@@ -65,3 +65,12 @@
 - `claude -p` 환경에는 Grep 도구가 없다(「No such tool」). 튜터 규칙은 Read의 offset·limit으로 대신하게 했다.
 - 러너 한계: 학습자 시뮬레이터가 튜터의 마지막 텍스트만 받아 도구 호출 앞의 메시지를 못 본다. 학습자 답이 「-」로 시작하면 `claude -p`가 옵션으로 읽어 무응답이 난다(r8 재개 6차례). 튜터 실패로 세지 않았다.
 - 재개 세션은 6~12차례만 돌려 이어 간 모듈을 끝까지 보지 못한다.
+
+## G4 출고
+
+**상태: 통과(자동 부분). Desktop 앱 확인은 사람 몫(R3의 Desktop 절반 미충족).**
+
+- 2026-11-15, GitHub 원격에서 새로 클론한 사본(`gh repo clone holmesLee-ws/go-treasury`, 커밋 511a8c4)을 expect pty로 실제 대화형 `claude --permission-mode default`에 띄워 신뢰 대화상자를 「Yes, I trust this folder」로 넘기고 「안녕」과 초심자 답 하나(「작은 쇼핑몰 회사 경리 1년 차예요. 사장님이 다음 달 돈이 모자랄지 미리 알려 달라고 해서 배우고 싶어요. 자금 업무는 완전 처음이에요.」)를 보냈다(`~/tmp/go-treasury/g4/drive.exp`, `session.log`).
+- 결과: **권한 질문 0회**(`PERMISSION_PROMPTS=0`). 첫 응답은 튜터의 인사와 목표·경험 질문(코딩 도우미가 아님). `learner/state.json`(목표·배경 기록)·`learner/log.md`·`learner/studio/map/01-my-map.html`(학습자 말로 그린 지도, 모듈 B1·W1·B2 경로)이 생겼고 `open learner/studio/map/01-my-map.html`이 허용 목록으로 실행됐다. 초심자 답 뒤 학습자가 모듈을 고르게 하는 행동 하나로 끝났다.
+- 미충족: Claude Desktop 앱은 자동 조작이 안 된다. 사람이 1분 안에 확인할 절차: ①Claude Desktop의 Code 탭에서 `go-treasury` 폴더를 연다(Chat 탭이 아님) ②신뢰를 수락한다 ③「안녕」을 보내 튜터의 첫 질문이 나오는지 본다 ④한 줄 답 뒤 `learner/state.json`과 HTML이 생기고 채팅의 경로를 클릭해 열리는지 본다.
+- 리포: https://github.com/holmesLee-ws/go-treasury (private).
